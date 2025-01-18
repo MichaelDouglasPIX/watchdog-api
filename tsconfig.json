@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                 
+    "module": "commonjs",                                
+    "outDir": "./dist",                                 
+    "typeRoots": [
+      "@types",
+      "./node_modules/@types"
+    ],
+    "esModuleInterop": true,                             
+    "forceConsistentCasingInFileNames": true,            
+    "strict": true,                                      
+    "skipLibCheck": true,
+    "noImplicitAny": true,                                
+    "strictPropertyInitialization": false
+  }
+}
