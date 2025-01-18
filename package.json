@@ -7,7 +7,9 @@
     "dist": "tsup src",
     "start:dev": "tsx src/server.ts",
     "start:watch": "tsx watch src/server.ts",
-    "start:disc": "npm run dist && node dist/src/index.js"
+    "start:disc": "npm run dist && node dist/src/index.js",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
   },
   "author": "Michael Douglas",
   "license": "ISC",
