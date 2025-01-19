@@ -2,9 +2,12 @@ import 'dotenv/config';
 import express from 'express';
 import routes from './routes';
 import errorHandler from './middlewares/errorHandler';
+import collectMetricsPrometheus from './middlewares/collectMetricsPrometheus';
 
 const app = express();
 app.use(express.json());
+
+app.use(collectMetricsPrometheus);
 
 app.use(routes);
 
