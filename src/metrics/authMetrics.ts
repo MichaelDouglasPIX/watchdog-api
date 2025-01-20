@@ -1,12 +1,12 @@
 import { Counter, Histogram, register } from '../config/prometheus';
 
 export const authUserSuccess = new Counter({
-  name: 'auth_user_Success',
+  name: 'auth_user_success_total',
   help: 'Total authenticated users'
 });
 
 export const authUserErrors = new Counter({
-  name: 'auth_user_error',
+  name: 'auth_user_error_total',
   help: 'Total authenticated errors'
 });
 

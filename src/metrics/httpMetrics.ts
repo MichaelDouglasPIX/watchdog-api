@@ -13,5 +13,12 @@ export const httpRequestDurationHistogram = new Histogram({
   buckets: [0.1, 0.5, 1, 2, 5, 10, 15, 30]
 });
 
+export const logLevelCounter = new Counter({
+  name: 'logback_events_total',
+  help: 'Count of log events by level',
+  labelNames: ['level']
+});
+
+register.registerMetric(logLevelCounter);
 register.registerMetric(httpRequestCounter);
 register.registerMetric(httpRequestDurationHistogram);
