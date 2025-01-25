@@ -7,6 +7,6 @@ const routes = Router();
 
 routes.use('/', basicCallsRouter);
 routes.use('/metrics', metricsRouter);
-routes.use('/sessions', sessionsRouter);
+routes.use('/session', sessionsRouter);
 
 export default routes;

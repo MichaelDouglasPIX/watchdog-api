@@ -10,4 +10,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 3333
-CMD ["npm", "run", "start:watch"]
+CMD ["npm", "run", "start:app"]

@@ -1,4 +1,4 @@
-import { Counter, Histogram, register } from '../config/prometheus';
+import { Counter, register } from '../config/prometheus';
 
 export const authUserSuccess = new Counter({
   name: 'auth_user_success_total',

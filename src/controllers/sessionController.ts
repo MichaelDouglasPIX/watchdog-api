@@ -9,6 +9,7 @@ export default class SessionController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
+      console.log(`[session] - create: route executed`);
       const { username, password } = request.body;
 
       const createSession = await CreateSessionService.execute({

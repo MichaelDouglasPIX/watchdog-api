@@ -1,6 +1,7 @@
 import {
   Registry,
   Counter,
+  Gauge,
   Histogram,
   collectDefaultMetrics
 } from 'prom-client';
@@ -13,4 +14,4 @@ register.setDefaultLabels({
 
 collectDefaultMetrics({ register });
 
-export { register, Counter, Histogram };
+export { register, Counter, Gauge, Histogram };
