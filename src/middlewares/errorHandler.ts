@@ -10,7 +10,8 @@ function errorHandler(
   next: NextFunction
 ) {
   console.error('[error]:', error);
-  logLevelCounter.inc({ level: 'error' });
+  const status = error instanceof AppError ? error.statusCode : 500;
+  logLevelCounter.inc({ level: 'error', status });
 
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({

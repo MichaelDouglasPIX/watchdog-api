@@ -16,7 +16,7 @@ export const httpRequestDurationHistogram = new Histogram({
 export const logLevelCounter = new Counter({
   name: 'logback_events_total',
   help: 'Count of log events by level',
-  labelNames: ['level']
+  labelNames: ['level', 'status']
 });
 
 register.registerMetric(logLevelCounter);
