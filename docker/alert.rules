@@ -1,0 +1,29 @@
+groups:
+- name: ops-watchdog-api
+  rules:
+  - alert: 'SLO BREAK'
+    expr: (histogram_quantile(0.90, sum(rate(http_request_duration_seconds_bucket{app="watchdog-api"}[1m])) by (le))) >= 0.5
+    for: 1m
+    labels:
+      app: 'watchdog-api'
+      severity: 'critical'
+      group: 'ops-watchdog-api'
+      env: 'production'
+    annotations:
+      title: 'SLO BREAK'
+      summary: '90% of requests are being served within 500ms or more.'
+      description: 'Watchdog API is breaking SLO, 90% of requests are being served in 500ms or more in the last minute.'
+
+  - alert: 'ERROR 500'
+    expr: (sum(rate(logback_events_total{app="watchdog-api", status="500"}[5m])) / sum(rate(logback_events_total{app="watchdog-api"}[5m]))) >= 0.20
+    for: 1m
+    labels:
+      app: 'watchdog-api'
+      severity: 'critical'
+      group: 'ops-watchdog-api'
+      env: 'production'
+    annotations:
+      title: 'ERROR 500'
+      summary: 'error 500 above 20% in the last minute.'
+      description: 'Watchdog API has an error rate of 500 above 20% in the last minute.' 
+ 

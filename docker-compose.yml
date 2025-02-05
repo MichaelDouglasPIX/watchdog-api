@@ -15,6 +15,7 @@ services:
     restart: always
     volumes:
       - ./docker/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/alert.rules:/etc/prometheus/alert.rules
     ports:
       - "9090:9090"
     networks:
@@ -45,6 +46,20 @@ services:
       - monitoring
     depends_on:
       - grafana
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./docker/alert-manager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    command:
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+    ports:
+      - "9093:9093"
+    networks:
+      - monitoring
+    depends_on:
+      - watchdog-api
   
   client:
     image: request-generator
@@ -53,7 +68,7 @@ services:
       dockerfile: dockerfile
     container_name: request-generator
     depends_on:
-      - watchdog-api
+      - alertmanager
     networks:
       - monitoring
 

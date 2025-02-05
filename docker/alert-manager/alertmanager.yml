@@ -1,0 +1,48 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: 'ops-watchdog-api'
+  group_wait: 15s
+  group_interval: 15s
+  repeat_interval: 1m
+
+receivers:
+  - name: 'ops-watchdog-api'
+    email_configs:
+      - to: ''
+        from: ''
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: ''
+        auth_password: ''
+        require_tls: true
+        send_resolved: true
+        headers:
+          subject: '🚨 [{{ .Status | toUpper }}] {{ .CommonLabels.alertname }} - {{ .CommonLabels.app }} ({{ .CommonLabels.env }})'
+        html: |
+          <html>
+          <body>
+            {{ if eq .Status "firing" }}
+              <h2 style="color: red;">🚨 ALERT: {{ .CommonLabels.alertname }}</h2>
+            {{ else }}
+              <h2 style="color: green;">✅ RESOLVED: {{ .CommonLabels.alertname }}</h2>
+            {{ end }}
+
+            <p><strong>Application:</strong> {{ .CommonLabels.app }}</p>
+            <p><strong>Environment:</strong> {{ .CommonLabels.env }}</p>
+            <p><strong>Severity:</strong> <span style="color: red;">{{ .CommonLabels.severity }}</span></p>
+
+            <p><strong>Status:</strong> 
+              {{ if eq .Status "firing" }}
+                <span style="color: red;">🔥 Alert Activated</span>
+              {{ else }}
+                <span style="color: green;">✅ Resolved</span>
+              {{ end }}
+            </p>
+
+            <p><strong>Description:</strong> {{ .CommonAnnotations.description }}</p>
+            <p><strong>Summary:</strong> {{ .CommonAnnotations.summary }}</p>
+            <hr>
+            <p><a href="{{ .ExternalURL }}" style="color: blue;">🔗 See in Alertmanager</a></p>
+          </body>
+          </html>
