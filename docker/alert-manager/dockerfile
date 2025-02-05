@@ -1,13 +1,10 @@
-FROM debian:latest
+FROM alpine:latest
 
-# Atualiza pacotes e instala dependências
-RUN apt-get update && apt-get install -y \
-    gettext-base \
+RUN apk add --no-cache \
+    gettext \
     curl \
-    bash \
-    && rm -rf /var/lib/apt/lists/*
+    bash
 
-# Baixa e instala o Alertmanager
 RUN curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.28.0/alertmanager-0.28.0.linux-amd64.tar.gz && \
     tar -xvf alertmanager-0.28.0.linux-amd64.tar.gz && \
     mv alertmanager-0.28.0.linux-amd64/alertmanager /bin/alertmanager && \
@@ -15,15 +12,8 @@ RUN curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.28.
     chmod +x /bin/alertmanager /bin/amtool && \
     rm -rf alertmanager-0.28.0.linux-amd64*
 
-# Define o diretório de trabalho
 WORKDIR /etc/alertmanager
 
-# Copia o template de configuração
 COPY alertmanager.yml.template /etc/alertmanager/alertmanager.yml.template
 
-# Substitui variáveis de ambiente no arquivo de configuração
-RUN envsubst < /etc/alertmanager/alertmanager.yml.template > /etc/alertmanager/alertmanager.yml && \
-    cat /etc/alertmanager/alertmanager.yml  # Para debug, pode remover depois
-
-# Comando de execução
 CMD ["/bin/alertmanager", "--config.file=/etc/alertmanager/alertmanager.yml"]

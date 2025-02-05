@@ -48,12 +48,15 @@ services:
       - grafana
 
   alertmanager:
-    image: prom/alertmanager:latest
+    build:
+      context: ./docker/alert-manager
+      dockerfile: dockerfile
     container_name: alertmanager
-    volumes:
-      - ./docker/alert-manager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
-    command:
-      - "--config.file=/etc/alertmanager/alertmanager.yml"
+    env_file:
+    - .env
+    entrypoint: >
+      sh -c "envsubst < /etc/alertmanager/alertmanager.yml.template > /etc/alertmanager/alertmanager.yml && 
+           /bin/alertmanager --config.file=/etc/alertmanager/alertmanager.yml"
     ports:
       - "9093:9093"
     networks:

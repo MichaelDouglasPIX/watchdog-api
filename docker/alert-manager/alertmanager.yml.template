@@ -10,11 +10,11 @@ route:
 receivers:
   - name: 'ops-watchdog-api'
     email_configs:
-      - to: ''
-        from: ''
+      - to: '${ALERT_EMAIL_TO}'
+        from: '${ALERT_EMAIL_FROM}'
         smarthost: 'smtp.gmail.com:587'
-        auth_username: ''
-        auth_password: ''
+        auth_username: '${ALERT_EMAIL_USERNAME}'
+        auth_password: '${ALERT_EMAIL_PASSWORD}'
         require_tls: true
         send_resolved: true
         headers:
