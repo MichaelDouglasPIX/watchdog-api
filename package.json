@@ -10,7 +10,8 @@
     "start:app": "node --initial-old-space-size=128 --max-old-space-size=512 --import tsx src/server.ts",
     "start:disc": "npm run dist && node dist/src/index.js",
     "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "docker:reset": "docker-compose down -v && docker-compose up -d"
   },
   "author": "Michael Douglas",
   "license": "ISC",
