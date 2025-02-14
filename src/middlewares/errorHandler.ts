@@ -2,6 +2,7 @@
 import { NextFunction, Request, Response } from 'express';
 import AppError from '../config/AppError';
 import { logLevelCounter } from '../metrics/httpMetrics';
+import Logger from '../utils/logger';
 
 function errorHandler(
   error: Error,
@@ -9,11 +10,12 @@ function errorHandler(
   response: Response,
   next: NextFunction
 ) {
-  console.error('[error]:', error);
+  Logger.error(request, error);
   const status = error instanceof AppError ? error.statusCode : 500;
   logLevelCounter.inc({ level: 'error', status });
 
   if (error instanceof AppError) {
+    Logger.warn(request, error);
     return response.status(error.statusCode).json({
       status: error.statusCode,
       error: {
@@ -22,12 +24,15 @@ function errorHandler(
     });
   }
 
-  return response.status(500).json({
+  const errorResponse = {
     status: 500,
     error: {
       message: 'Internal server error'
     }
-  });
+  };
+
+  Logger.error(request, errorResponse);
+  return response.status(500).json(errorResponse);
 }
 
 export default errorHandler;

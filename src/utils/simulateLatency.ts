@@ -1,6 +1,11 @@
-export default async function simulateLatency(): Promise<number> {
+import { Request } from 'express';
+import Logger from './logger';
+
+export default async function simulateLatency(
+  request: Request
+): Promise<number> {
   const ms = Math.floor(Math.random() * 20000);
-  console.log(`[simulateLatency] - ms:`, ms);
+  Logger.log(request, `[simulateLatency] - ms:`, ms);
 
   return new Promise(resolve => setTimeout(() => resolve(ms), ms));
 }

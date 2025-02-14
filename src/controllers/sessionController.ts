@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import CreateSessionService from '../services/createSessionService';
 import { authUserErrors, authUserSuccess } from '../metrics/authMetrics';
+import Logger from '../utils/logger';
 
 export default class SessionController {
   public async create(
@@ -9,7 +10,7 @@ export default class SessionController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      console.log(`[session] - create: route executed`);
+      Logger.log(request, `[session] - create: route executed`);
       const { username, password } = request.body;
 
       const createSession = await CreateSessionService.execute({

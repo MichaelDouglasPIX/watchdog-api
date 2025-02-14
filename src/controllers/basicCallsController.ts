@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import simulateLatency from '../utils/simulateLatency';
 import AppError from '../config/AppError';
+import Logger from '../utils/logger';
 
 export default class BasicCallsController {
   public async simpleCall(
@@ -9,7 +10,7 @@ export default class BasicCallsController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      console.log(`[simpleCall] - route executed`);
+      Logger.log(request, `[simpleCall] - route executed`);
       const currentTime = new Date();
 
       const returnMessage = { currentTime, message: 'quick test carried out!' };
@@ -26,8 +27,8 @@ export default class BasicCallsController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      console.log(`[callWithData] - route executed`);
-      console.log(`[callWithData] - body:`, request.body);
+      Logger.log(request, `[callWithData] - route executed`);
+      Logger.log(request, `[callWithData] - body:`, request.body);
 
       if (Object.keys(request.body).length === 0) {
         throw new AppError('request body is required');
@@ -53,16 +54,19 @@ export default class BasicCallsController {
     next: NextFunction
   ): Promise<Response | void> {
     try {
-      console.log(`[latencyCall] - route executed`);
+      Logger.log(request, `[latencyCall] - route executed`);
+
       const currentTime = new Date();
 
-      const latency = await simulateLatency();
+      const latency = await simulateLatency(request);
 
       const returnMessage = {
         currentTime,
         message: 'Quick test carried out with random latency!',
         latency: `${latency} seconds`
       };
+
+      Logger.log(request, `[latencyCall] - call latency: ${latency} seconds`);
 
       return response.send(returnMessage);
     } catch (error) {

@@ -40,6 +40,20 @@ services:
     networks:
       - monitoring
 
+  loki:
+    image: grafana/loki:latest
+    container_name: loki
+    restart: always
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./docker/loki/loki-config.yml:/etc/loki/local-config.yml
+      - loki-data:/loki
+    depends_on:
+      - grafana
+    networks:
+      - monitoring
+
   watchdog-api:
     build:
       context: .
@@ -49,7 +63,7 @@ services:
     networks:
       - monitoring
     depends_on:
-      - grafana
+      - loki
 
   alertmanager:
     build:
@@ -83,3 +97,6 @@ services:
 networks:
   monitoring:
     driver: bridge
+
+volumes:
+  loki-data:

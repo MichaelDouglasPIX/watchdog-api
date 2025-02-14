@@ -1,0 +1,9 @@
+storage_config:
+  boltdb_shipper:
+    active_index_directory: /tmp/loki/index
+    cache_location: /tmp/loki/cache
+ring:
+  kvstore:
+    store: inmemory
+  replication_factor: 1
+  instance_addr: <IP>:<PORT>
