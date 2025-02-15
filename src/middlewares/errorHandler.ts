@@ -10,12 +10,19 @@ function errorHandler(
   response: Response,
   next: NextFunction
 ) {
-  Logger.error(request, error);
   const status = error instanceof AppError ? error.statusCode : 500;
+  const errorLogger = {
+    status,
+    method: request.method,
+    url: request.originalUrl,
+    body: request.body || 'N/A',
+    error_message: error.message
+  };
+
   logLevelCounter.inc({ level: 'error', status });
 
   if (error instanceof AppError) {
-    Logger.warn(request, error);
+    Logger.warn(request, errorLogger);
     return response.status(error.statusCode).json({
       status: error.statusCode,
       error: {
@@ -31,7 +38,11 @@ function errorHandler(
     }
   };
 
-  Logger.error(request, errorResponse);
+  Logger.error(request, errorLogger);
+
+  if (error.stack) {
+    Logger.error(request, error.stack);
+  }
   return response.status(500).json(errorResponse);
 }
 

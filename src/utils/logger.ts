@@ -1,30 +1,48 @@
 import axios from 'axios';
 import { Request } from 'express';
 import { v4 as uuidv4 } from 'uuid';
+import { LoggerRequest } from '../models/Logger';
 
 class Logger {
   public static async log(request?: Request, ...args: any[]) {
-    const requestId = request?.requestId ? request?.requestId : uuidv4();
     console.log(`[LOG]`, ...args);
-    await this.registerOnLoki('INFO', requestId, args);
+    const status = 'info';
+    void this.registerOnLoki(
+      {
+        status,
+        request
+      },
+      args
+    );
   }
 
   public static async error(request?: Request, ...args: any[]) {
-    const requestId = request?.requestId ? request?.requestId : uuidv4();
     console.log(`[ERROR]`, ...args);
-    await this.registerOnLoki('ERROR', requestId, args);
+    const status = 'error';
+    void this.registerOnLoki(
+      {
+        status,
+        request
+      },
+      args
+    );
   }
 
   public static async warn(request?: Request, ...args: any[]) {
-    const requestId = request?.requestId ? request?.requestId : uuidv4();
     console.log(`[WARN]`, ...args);
-    await this.registerOnLoki('WARN', requestId, args);
+    const status = 'warn';
+    void this.registerOnLoki(
+      {
+        status,
+        request
+      },
+      args
+    );
   }
 
   private static async registerOnLoki(
-    status: string,
-    requestId: string,
-    log: any[]
+    { status, request }: LoggerRequest,
+    args: any[]
   ) {
     const url = 'http://loki:3100/loki/api/v1/push';
 
@@ -32,13 +50,15 @@ class Logger {
       'Content-Type': 'application/json'
     };
 
-    const logString = log
+    const logString = args
       .map(item => (typeof item === 'string' ? item : JSON.stringify(item)))
       .join(' ');
 
     const date = new Date();
     const timestampInMilliseconds = date.getTime();
     const timestampInNanoseconds = timestampInMilliseconds * 1000000;
+
+    const requestId = request?.requestId ?? uuidv4();
 
     const payload = {
       streams: [
@@ -47,12 +67,19 @@ class Logger {
             application: 'watchdog-api',
             level: status,
             request_id: requestId,
+            method: request?.method ?? 'N/A',
+            route: request?.route?.path ?? 'N/A',
+            controller: request?.controllerName ?? 'N/A',
+            function: request?.methodName ?? 'N/A',
+            ip: request?.ip ?? 'N/A',
             timestamp: timestampInMilliseconds.toString()
           },
           values: [[timestampInNanoseconds.toString(), logString]]
         }
       ]
     };
+
+    console.log('\npayload para salvar:', payload);
 
     try {
       await axios.post(url, payload, {

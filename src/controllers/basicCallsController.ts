@@ -4,6 +4,7 @@ import AppError from '../config/AppError';
 import Logger from '../utils/logger';
 
 export default class BasicCallsController {
+  constructor(private controller = 'BasicCallsController') {}
   public async simpleCall(
     request: Request,
     response: Response,
@@ -11,6 +12,7 @@ export default class BasicCallsController {
   ): Promise<Response | void> {
     try {
       Logger.log(request, `[simpleCall] - route executed`);
+
       const currentTime = new Date();
 
       const returnMessage = { currentTime, message: 'quick test carried out!' };
