@@ -1,0 +1,343 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "Centralization of watchdog-api execution logs",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 3,
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Filter by log level",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22%3A%7B%22datasource%22%3A%22fed5ts5h4k5c0b%22%2C%22queries%22%3A%5B%7B%22refId%22%3A%22A%22%2C%22expr%22%3A%22%7Bapplication%3D%5C%22watchdog-api%5C%22%2C+level%3D%5C%22error%5C%22%7D%5Cr%5Cn%22%2C%22queryType%22%3A%22range%22%2C%22datasource%22%3A%7B%22type%22%3A%22loki%22%2C%22uid%22%3A%22fed5ts5h4k5c0b%22%7D%2C%22editorMode%22%3A%22code%22%2C%22direction%22%3A%22backward%22%7D%5D%2C%22range%22%3A%7B%22from%22%3A%22now-1h%22%2C%22to%22%3A%22now%22%7D%7D%7D&orgId=1"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Number of records meets a condition",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22:%7B%22datasource%22:%22fed5ts5h4k5c0b%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%20by%20%28application%29%20%28count_over_time%28%7Bapplication%3D%5C%22watchdog-api%5C%22,%20level%3D%5C%22error%5C%22%7D%5B5m%5D%29%29%20%3E%3D%20bool%2030%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22fed5ts5h4k5c0b%22%7D,%22editorMode%22:%22code%22,%22direction%22:%22backward%22,%22legendFormat%22:%22condition%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1&timezone=America%2FSao_Paulo"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Filter records while excluding specific fields",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22:%7B%22datasource%22:%22fed5ts5h4k5c0b%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%20without%28application,%20method,%20request_id,%20route,%20service_name,%20timestamp,%20controller,%20ip,%20detected_level%20%29%20%28count_over_time%28%7Blevel%3D%5C%22warn%5C%22%7D%5B5m%5D%29%29%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22fed5ts5h4k5c0b%22%7D,%22editorMode%22:%22code%22,%22direction%22:%22backward%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1&timezone=America%2FSao_Paulo"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Compare the number of records between two log levels",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22:%7B%22datasource%22:%22fed5ts5h4k5c0b%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%20by%28function%29%20%28count_over_time%28%7Blevel%3D%5C%22info%5C%22%7D%5B5m%5D%29%29%20%5Cr%5Cn%3E%20%5Cr%5Cnsum%20by%28function%29%20%28count_over_time%28%7Blevel%3D%5C%22warn%5C%22%7D%5B5m%5D%29%29%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22fed5ts5h4k5c0b%22%7D,%22editorMode%22:%22code%22,%22direction%22:%22backward%22,%22legendFormat%22:%22%7B%7Bfunction%7D%7D%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1&timezone=America%2FSao_Paulo"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Calculate the error event rate based on the total number of logs",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22:%7B%22datasource%22:%22fed5ts5h4k5c0b%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%20by%28application%29%20%28count_over_time%28%7Blevel%3D%5C%22error%5C%22%7D%5B5m%5D%29%29%20%2F%20on%28%29%20sum%28count_over_time%28%7Bapplication%3D%5C%22watchdog-api%5C%22%7D%5B5m%5D%29%29%5Cr%5Cn%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22fed5ts5h4k5c0b%22%7D,%22editorMode%22:%22code%22,%22direction%22:%22backward%22,%22legendFormat%22:%22Error%20Log%22,%22step%22:%22%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1&timezone=America%2FSao_Paulo"
+      },
+      {
+        "asDropdown": false,
+        "icon": "external link",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": true,
+        "title": "Compute the event rate per log level, divided by the total number of records",
+        "tooltip": "",
+        "type": "link",
+        "url": "http://localhost:3000/explore?schemaVersion=1&panes=%7B%22avd%22:%7B%22datasource%22:%22fed5ts5h4k5c0b%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22sum%20by%20%28application,%20level%29%20%28rate%28%7Bapplication%3D%5C%22watchdog-api%5C%22%7D%5B5m%5D%29%29%20%2F%20on%20%28application%29%20group_left%20sum%20by%20%28application%29%20%28rate%28%7Bapplication%3D%5C%22watchdog-api%5C%22%7D%5B5m%5D%29%29%5Cr%5Cn%22,%22queryType%22:%22range%22,%22datasource%22:%7B%22type%22:%22loki%22,%22uid%22:%22fed5ts5h4k5c0b%22%7D,%22editorMode%22:%22code%22,%22direction%22:%22backward%22,%22legendFormat%22:%22%7B%7Blevel%7D%7D%22,%22step%22:%22%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D%7D&orgId=1&timezone=America%2FSao_Paulo"
+      }
+    ],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 3,
+        "panels": [],
+        "title": "API Logging",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "fed5ts5h4k5c0b"
+        },
+        "description": "General API call log",
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 32,
+          "w": 13,
+          "x": 0,
+          "y": 1
+        },
+        "id": 1,
+        "options": {
+          "dedupStrategy": "none",
+          "enableInfiniteScrolling": false,
+          "enableLogDetails": true,
+          "prettifyLogMessage": true,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "fed5ts5h4k5c0b"
+            },
+            "direction": "backward",
+            "editorMode": "code",
+            "expr": "{application=\"watchdog-api\"}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Logs",
+        "type": "logs"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "fed5ts5h4k5c0b"
+        },
+        "description": "Rate of event records grouped by level",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "barWidthFactor": 0.6,
+              "drawStyle": "line",
+              "fillOpacity": 10,
+              "gradientMode": "opacity",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "error"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "info"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "warn"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "semi-dark-orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 11,
+          "x": 13,
+          "y": 1
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "hideZeros": false,
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "11.5.1",
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "fed5ts5h4k5c0b"
+            },
+            "direction": "backward",
+            "editorMode": "code",
+            "expr": "sum by (level) (count_over_time({application=\"watchdog-api\"}[5m]))",
+            "legendFormat": "{{level}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Log Events",
+        "type": "timeseries"
+      },
+      {
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 19,
+          "w": 11,
+          "x": 13,
+          "y": 14
+        },
+        "id": 2,
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "# Troubleshooting Queries\n\n\n- Filter by log level: error | info | warn\n\n```\n{application=\"watchdog-api\", level=\"error\"}\n```\n\n- Check if the number of records meets a specific condition\n\n```\nsum by (application) (count_over_time({application=\"watchdog-api\", level=\"error\"}[5m])) >= bool 30\n```\n\n- Filter log records by level while excluding specific fields\n\n```\nsum without(application, method, request_id, route, service_name, timestamp, controller, ip, detected_level ) (count_over_time({level=\"warn\"}[5m]))\n```\n\n- Compare the number of records between two log levels\n\n```\nsum by(function) (count_over_time({level=\"info\"}[5m])) \n> \nsum by(function) (count_over_time({level=\"warn\"}[5m]))\n```\n\n- Calculate the error event rate based on the total number of logs\n\n```\nsum by(application) (count_over_time({level=\"error\"}[5m])) / on() sum(count_over_time({application=\"watchdog-api\"}[5m]))\n```\n\n- Compute the event rate per log level, divided by the total number of records\n\n```\nsum by (application, level) (rate({application=\"watchdog-api\"}[5m])) / on (application) group_left sum by (application) (rate({application=\"watchdog-api\"}[5m]))\n```",
+          "mode": "markdown"
+        },
+        "pluginVersion": "11.5.1",
+        "title": "Panel Title",
+        "type": "text"
+      }
+    ],
+    "preload": false,
+    "refresh": "30s",
+    "schemaVersion": 40,
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "browser",
+    "title": "logs-watchdog-api",
+    "uid": "ded5vqt61r94wb",
+    "version": 7,
+    "weekStart": ""
+  }
