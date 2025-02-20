@@ -1973,8 +1973,8 @@
         },
         {
           "current": {
-            "text": "watchdog-api:3333",
-            "value": "watchdog-api:3333"
+            "text": "watchdog-api:8080",
+            "value": "watchdog-api:8080"
           },
           "definition": "label_values(nodejs_active_resources{type=\"PipeWrap\",app=\"$application\"}, instance)",
           "description": "",

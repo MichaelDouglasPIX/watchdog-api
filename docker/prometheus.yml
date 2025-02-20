@@ -26,4 +26,4 @@ scrape_configs:
   - job_name: 'watchdog-exporter'
     metrics_path: /metrics
     static_configs:
-      - targets: ['watchdog-api:3333']
+      - targets: ['watchdog-api:8080']

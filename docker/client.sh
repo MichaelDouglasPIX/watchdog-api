@@ -1,5 +1,5 @@
 #!/bin/bash
-HOST='watchdog-api:3333'
+HOST='proxy-watchdog-api:80'
 
 echo $HOST
 

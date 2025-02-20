@@ -7,7 +7,7 @@ import { startScheduler } from './jobs/jobsScheduler';
 import error404Handler from './middlewares/error404Handler';
 import requestIdMiddleware from './middlewares/requestId';
 
-const port = 3333;
+const port = 8080;
 
 const app = express();
 app.use(requestIdMiddleware);

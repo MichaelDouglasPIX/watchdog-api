@@ -18,6 +18,7 @@ services:
       - "9090:9090"
     networks:
       - monitoring
+      - api
     depends_on:
       - node-exporter
 
@@ -42,8 +43,8 @@ services:
     image: grafana/loki:latest
     container_name: loki
     restart: always
-    ports:
-      - "3100:3100"
+    expose:
+      - 3100
     volumes:
       - ./docker/loki/loki-config.yml:/etc/loki/local-config.yml
       - loki-data:/loki
@@ -51,17 +52,32 @@ services:
       - grafana
     networks:
       - monitoring
+      - api
 
   watchdog-api:
     build:
       context: .
     container_name: watchdog-api
-    ports:
-      - "3333:3333"
+    expose:
+      - 8080
     networks:
-      - monitoring
+      - api
     depends_on:
       - loki
+
+  proxy-watchdog-api:
+    build:
+      context: ./docker/nginx
+      dockerfile: dockerfile
+    image: proxy-watchdog-api
+    container_name: proxy-watchdog-api
+    ports:
+      - 80:80
+    networks:
+      - public
+      - api
+    depends_on:
+      - watchdog-api
 
   alertmanager:
     build:
@@ -78,7 +94,7 @@ services:
     networks:
       - monitoring
     depends_on:
-      - watchdog-api
+      - proxy-watchdog-api
   
   client:
     image: request-generator
@@ -89,10 +105,14 @@ services:
     depends_on:
       - alertmanager
     networks:
-      - monitoring
+      - public
 
 
 networks:
+  public:
+  api:
+    internal: 
+      true
   monitoring:
     driver: bridge
 
