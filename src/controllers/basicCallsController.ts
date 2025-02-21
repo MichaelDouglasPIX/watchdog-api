@@ -2,9 +2,12 @@ import { NextFunction, Request, Response } from 'express';
 import simulateLatency from '../utils/simulateLatency';
 import AppError from '../config/AppError';
 import Logger from '../utils/logger';
+import { TraceMethod } from '../services/tracingDecorator';
 
 export default class BasicCallsController {
   constructor(private controller = 'BasicCallsController') {}
+
+  @TraceMethod()
   public async simpleCall(
     request: Request,
     response: Response,
@@ -18,11 +21,12 @@ export default class BasicCallsController {
       const returnMessage = { currentTime, message: 'quick test carried out!' };
 
       return response.send(returnMessage);
-    } catch (error) {
+    } catch (error: any) {
       next(error);
     }
   }
 
+  @TraceMethod()
   public async callWithData(
     request: Request,
     response: Response,
@@ -50,6 +54,7 @@ export default class BasicCallsController {
     }
   }
 
+  @TraceMethod()
   public async latencyCall(
     request: Request,
     response: Response,

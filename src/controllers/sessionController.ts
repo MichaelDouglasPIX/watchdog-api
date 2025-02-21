@@ -2,8 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 import CreateSessionService from '../services/createSessionService';
 import { authUserErrors, authUserSuccess } from '../metrics/authMetrics';
 import Logger from '../utils/logger';
+import { TraceMethod } from '../services/tracingDecorator';
 
 export default class SessionController {
+  @TraceMethod()
   public async create(
     request: Request,
     response: Response,

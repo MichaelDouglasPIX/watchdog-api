@@ -3,6 +3,8 @@ import { NextFunction, Request, Response } from 'express';
 import AppError from '../config/AppError';
 import { logLevelCounter } from '../metrics/httpMetrics';
 import Logger from '../utils/logger';
+import { createSpan } from '../utils/trace';
+import { SpanStatusCode } from '@opentelemetry/api';
 
 function errorHandler(
   error: Error,
@@ -10,6 +12,7 @@ function errorHandler(
   response: Response,
   next: NextFunction
 ) {
+  const span = createSpan('errorHandler');
   const status = error instanceof AppError ? error.statusCode : 500;
   const errorLogger = {
     status,
@@ -23,6 +26,11 @@ function errorHandler(
 
   if (error instanceof AppError) {
     Logger.warn(request, errorLogger);
+
+    span.recordException(error);
+    span.setStatus({ code: SpanStatusCode.ERROR });
+    span.end();
+
     return response.status(error.statusCode).json({
       status: error.statusCode,
       error: {
@@ -43,6 +51,11 @@ function errorHandler(
   if (error.stack) {
     Logger.error(request, error.stack);
   }
+
+  span.recordException(error);
+  span.setStatus({ code: SpanStatusCode.ERROR });
+  span.end();
+
   return response.status(500).json(errorResponse);
 }
 

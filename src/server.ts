@@ -6,6 +6,7 @@ import collectMetricsPrometheus from './middlewares/collectMetricsPrometheus';
 import { startScheduler } from './jobs/jobsScheduler';
 import error404Handler from './middlewares/error404Handler';
 import requestIdMiddleware from './middlewares/requestId';
+import './services/tracing';
 
 const port = 8080;
 

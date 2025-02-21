@@ -54,6 +54,18 @@ services:
       - monitoring
       - api
 
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686"
+    networks:
+      - monitoring
+      - api
+      #- public
+    depends_on:
+      - loki
+
   watchdog-api:
     build:
       context: .
@@ -63,7 +75,7 @@ services:
     networks:
       - api
     depends_on:
-      - loki
+      - jaeger
 
   proxy-watchdog-api:
     build:

@@ -2,8 +2,10 @@ import axios from 'axios';
 import { Request } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { LoggerRequest } from '../models/Logger';
+import { TraceMethod } from '../services/tracingDecorator';
 
 class Logger {
+  @TraceMethod()
   public static async log(request?: Request, ...args: any[]) {
     console.log(`[LOG]`, ...args);
     const status = 'info';
@@ -16,6 +18,7 @@ class Logger {
     );
   }
 
+  @TraceMethod()
   public static async error(request?: Request, ...args: any[]) {
     console.log(`[ERROR]`, ...args);
     const status = 'error';
@@ -28,6 +31,7 @@ class Logger {
     );
   }
 
+  @TraceMethod()
   public static async warn(request?: Request, ...args: any[]) {
     console.log(`[WARN]`, ...args);
     const status = 'warn';
