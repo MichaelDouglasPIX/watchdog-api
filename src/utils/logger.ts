@@ -83,8 +83,6 @@ class Logger {
       ]
     };
 
-    console.log('\npayload para salvar:', payload);
-
     try {
       await axios.post(url, payload, {
         headers

@@ -1,6 +1,6 @@
 export default {
   jwt: {
-    secret: 'hyper-mega-secret',
-    expiresIn: '1d'
+    secret: process.env.SECRET ?? 'secret',
+    expiresIn: process.env.EXPIRE ? Number(process.env.EXPIRE) : 3600
   }
 };

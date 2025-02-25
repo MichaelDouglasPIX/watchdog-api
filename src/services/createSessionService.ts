@@ -12,9 +12,18 @@ export default class CreateSessionService {
       throw new AppError('required fields for authentication are missing');
     }
 
-    const token = sign({}, authConfig.jwt.secret as Secret, {
+    const secret: string = authConfig.jwt.secret;
+    const expire: number = authConfig.jwt.expiresIn;
+
+    if (!secret && !expire) {
+      throw new AppError(
+        'required fields for authentication configuration are missing'
+      );
+    }
+
+    const token = sign({}, secret as Secret, {
       subject: username,
-      expiresIn: authConfig.jwt.expiresIn
+      expiresIn: expire
     });
 
     return {
