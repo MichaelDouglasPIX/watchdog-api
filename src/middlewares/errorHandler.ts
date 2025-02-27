@@ -13,6 +13,7 @@ function errorHandler(
   next: NextFunction
 ) {
   const span = createSpan('errorHandler');
+
   const status = error instanceof AppError ? error.statusCode : 500;
   const errorLogger = {
     status,
