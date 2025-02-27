@@ -1,8 +1,11 @@
 import {
   freeMemoryGauge,
-  nonHeapMemoryGauge
+  nonHeapMemoryGauge,
+  totalMemoryGauge
 } from '../metrics/applicationMetrics';
 import os from 'os';
+
+const totalMemory = totalMemoryGauge.set(os.totalmem());
 
 export function startNonHeapMemoryCollection() {
   setInterval(() => {
