@@ -176,6 +176,8 @@ Neste projeto, utilizamos o Jaeger para acompanhar a **malha transacional** desd
 
 Para mais informações, acesse a página oficial do [Jaeger](https://www.jaegertracing.io/).
 
+&nbsp;&nbsp;&nbsp;
+
 ## 🚀 Tecnologias
 
 &nbsp;&nbsp;&nbsp;
@@ -258,7 +260,8 @@ Para mais informações, acesse a página oficial do [Jaeger](https://www.jaeger
 
 Para o envio de alertas por e-mail, é necessário configurar credenciais. Se estiver utilizando uma conta do Gmail, será preciso gerar uma senha de aplicativo. Consulte a [documentação oficial do Google](https://support.google.com/accounts/answer/185833?hl=en) para mais detalhes sobre como criar essa senha.
 
-> [!IMPORTANT] Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
+> [!IMPORTANT]
+> Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
 
 ```
 ALERT_EMAIL_TO=destinatario@gmail.com
@@ -270,6 +273,8 @@ SMTP_SERVER=smtp.gmail.com:587
 SECRET=hyper-mega-secret
 EXPIRE=43200
 ```
+
+&nbsp;&nbsp;&nbsp;
 
 ## 📦 Instalação
 
@@ -286,7 +291,9 @@ cd watchdog-api
 npm i
 ```
 
-## Rodar o projeto localmente
+&nbsp;&nbsp;&nbsp;
+
+## 💻 Rodar o projeto localmente
 
 ### Docker
 
