@@ -56,10 +56,14 @@ Agora que entendemos o que é **observabilidade** e **monitoramento**, podemos e
 
 ## ⚙️ Ferramentas
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 6px;">
-  <img src="https://skillicons.dev/icons?i=prometheus" alt="Prometheus"/>
-  <h3 style="margin: 0;">Prometheus</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="https://skillicons.dev/icons?i=prometheus" alt="Prometheus"/>
+    </td>
+    <td><h3 style="margin: 0;">Prometheus</h3></td>
+  </tr>
+</table>
 
 O Prometheus é uma ferramenta de **monitoramento** e **observabilidade** usada para coletar e armazenar séries temporais identificadas como métricas, organizadas em pares chave-valor. Essas séries temporais podem ser armazenadas localmente no banco de dados embutido do Prometheus ou em um armazenamento remoto.
 
@@ -77,10 +81,14 @@ A partir dessas séries temporais armazenadas, é possível:
 
 Para mais informações, acesse a página do [**Prometheus**](https://prometheus.io/docs/introduction/overview/).
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
-  <img src="./images/logos/node-exporter-logo.png" alt="Node Exporter" width="50"/>
-  <h3 style="margin: 0;">Node Exporter</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="./images/logos/node-exporter-logo.png" alt="Node Exporter" width="50"/>
+    </td>
+    <td><h3 style="margin: 0;">Node Exporter</h3></td>
+  </tr>
+</table>
 
 O **Node Exporter** é um exportador de métricas para o **Prometheus**, utilizado para monitorar a infraestrutura de servidores, coletando métricas de desempenho e informações sobre o estado do servidor.
 
@@ -90,10 +98,14 @@ O **Node Exporter** expõe essas métricas em um endpoint HTTP, que o **Promethe
 
 Para mais informações, acesse o repositório oficial do Node Exporter: [Node Exporter no GitHub](https://github.com/prometheus/node_exporter).
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
-  <img src="./images/logos/alert-manager-logo.png" alt="Alert Manager" width="50"/>
-  <h3 style="margin: 0;">Alert Manager</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="./images/logos/alert-manager-logo.png" alt="Alert Manager" width="50"/>
+    </td>
+    <td><h3 style="margin: 0;">Alert Manager</h3></td>
+  </tr>
+</table>
 
 O **Alert Manager** é um componente do Prometheus responsável por gerenciar os alertas quando as condições definidas nas métricas do Prometheus são atendidas. Ele recebe os dados e encaminha as notificações para os canais configurados, como Slack, Email, Discord, entre outros.
 
@@ -115,10 +127,14 @@ Neste projeto, estaremos notificando por **email** dois alertas:
 
 Para mais informações, acesse a página do Prometheus sobre o [**Alert Manager**](https://prometheus.io/docs/alerting/latest/overview/).
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
-  <img src="./images/logos/loki-logo.png" alt="Loki" width="50"/>
-  <h3 style="margin: 0;">Loki</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="./images/logos/loki-logo.png" alt="Loki" width="50"/>
+    </td>
+    <td><h3 style="margin: 0;">Loki</h3></td>
+  </tr>
+</table>
 
 O Loki é uma ferramenta de log aggregation responsável por coletar, armazenar e permitir a consulta de logs. Ele centraliza os registros de diferentes sistemas e aplicações em um único componente, permitindo pesquisas otimizadas através das metadatas (labels) dos logs.
 
@@ -141,10 +157,14 @@ Esse padrão possibilita uma filtragem completa e eficiente dos logs registrados
 
 Para mais informações, acesse a página do [Grafana Loki](https://grafana.com/docs/loki/latest/).
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
-  <img src="https://skillicons.dev/icons?i=grafana" alt="Grafana"/>
-  <h3 style="margin: 0;">Grafana</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="https://skillicons.dev/icons?i=grafana" alt="Grafana" width="50" >
+    </td>
+    <td><h3 style="margin: 0;">Grafana</h3></td>
+  </tr>
+</table>
 
 O Grafana é uma plataforma de visualização e monitoramento de dados que permite criar dashboards interativos, acompanhar métricas, visualizar e analisar logs em tempo real, além de criar alarmes baseados em métricas disponíveis. Ele suporta diferentes fontes de dados, como Prometheus, Loki, CloudWatch, Elasticsearch, entre outras.
 
@@ -161,10 +181,14 @@ Com esses dois dashboards, torna-se mais fácil correlacionar eventos e realizar
 
 Para mais informações, acesse a página oficial do [Grafana](https://grafana.com/docs/grafana/latest/).
 
-<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
-  <img src="./images/logos/jaeger-logo.png" alt="Jaeger" width="50"/>
-  <h3 style="margin: 0;">Jaeger</h3> 
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="./images/logos/jaeger-logo.png" alt="Jaeger" width="50"/>
+    </td>
+    <td><h3 style="margin: 0;">Jaeger</h3></td>
+  </tr>
+</table>
 
 O **Jaeger** é uma ferramenta de **tracing distribuído** utilizada para monitorar transações em arquiteturas distribuídas, desde aplicações monolíticas até microserviços. Ele permite acompanhar toda a **propagação transacional** dentro de um sistema por meio de **spans**, que juntos formam um **trace**.
 
@@ -259,14 +283,14 @@ Para mais informações, acesse a página oficial do [Jaeger](https://www.jaeger
 
 ## ⚠️ Pré-requisitos
 
-> [!Atenção]
+> [!WARNING]
 > Para executar o projeto é necessário instalar as seguintes ferramentas em sua máquina:
 
 - [Node.js](https://nodejs.org/en): v18 ou maior.
 
 Para o envio de alertas por e-mail, é necessário configurar credenciais. Se estiver utilizando uma conta do Gmail, será preciso gerar uma senha de aplicativo. Consulte a [documentação oficial do Google](https://support.google.com/accounts/answer/185833?hl=en) para mais detalhes sobre como criar essa senha.
 
-> [!IMPORTANTE] Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
+> [!IMPORTANT] Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
 
 ```
 ALERT_EMAIL_TO=destinatario@gmail.com
@@ -327,7 +351,7 @@ Após iniciar os containers com Docker, é possível acessar as interfaces de mo
 
 &nbsp;&nbsp;&nbsp;
 
-> [!Atenção]
+> [!WARNING]
 > O container **request-generator** simula requisições de clientes, gerando tráfego para alimentar as métricas de monitoramento. Caso deseje visualizar apenas os seus próprios testes, você pode interromper esse container sem impactar o restante do projeto.
 
 &nbsp;&nbsp;&nbsp;
