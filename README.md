@@ -261,7 +261,7 @@ Para mais informações, acesse a página oficial do [Jaeger](https://www.jaeger
 Para o envio de alertas por e-mail, é necessário configurar credenciais. Se estiver utilizando uma conta do Gmail, será preciso gerar uma senha de aplicativo. Consulte a [documentação oficial do Google](https://support.google.com/accounts/answer/185833?hl=en) para mais detalhes sobre como criar essa senha.
 
 > [!IMPORTANT]
-> Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
+> Renomeie o arquivo `.env_example` para `.env` e preencha as informações obrigatórias
 
 ```
 ALERT_EMAIL_TO=destinatario@gmail.com
