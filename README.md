@@ -4,7 +4,11 @@
   WatchdogAPI é um projeto pessoal criado para praticar e compartilhar conceitos de observabilidade e monitoramento em Node.js. Esta API simples gera logs, métricas e traces, permitindo uma visão completa do seu funcionamento em tempo real. 
 </p>
 
-## Conceitos Abordados
+<p align="center">
+  <img src="images/Project-Infrastructure.PNG" width="700"/>
+</p>
+
+## 📚 Conceitos Abordados
 
 Antes de seguirmos para os componentes do monitoramento, é importante entender o que é SRE.
 
@@ -50,9 +54,12 @@ O monitoramento tem os seguintes objetivos principais:
 
 Agora que entendemos o que é **observabilidade** e **monitoramento**, podemos explorar as ferramentas utilizadas neste projeto.
 
-## Ferramentas
+## ⚙️ Ferramentas
 
-### Prometheus
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 6px;">
+  <img src="https://skillicons.dev/icons?i=prometheus" alt="Prometheus"/>
+  <h3 style="margin: 0;">Prometheus</h3> 
+</div>
 
 O Prometheus é uma ferramenta de **monitoramento** e **observabilidade** usada para coletar e armazenar séries temporais identificadas como métricas, organizadas em pares chave-valor. Essas séries temporais podem ser armazenadas localmente no banco de dados embutido do Prometheus ou em um armazenamento remoto.
 
@@ -64,9 +71,16 @@ A partir dessas séries temporais armazenadas, é possível:
 - Gerar alertas para problemas através da integração com o Alertmanager
 - Visualizar os dados em tempo real integrando com o Grafana
 
+<p align="center">
+<img src="./images/gifs/prometheus-interface.gif" alt="Prometheus interface" width="500" style= "padding-top: 10px;"/>
+</p>
+
 Para mais informações, acesse a página do [**Prometheus**](https://prometheus.io/docs/introduction/overview/).
 
-### Node Exporter
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
+  <img src="./images/logos/node-exporter-logo.png" alt="Node Exporter" width="50"/>
+  <h3 style="margin: 0;">Node Exporter</h3> 
+</div>
 
 O **Node Exporter** é um exportador de métricas para o **Prometheus**, utilizado para monitorar a infraestrutura de servidores, coletando métricas de desempenho e informações sobre o estado do servidor.
 
@@ -76,7 +90,10 @@ O **Node Exporter** expõe essas métricas em um endpoint HTTP, que o **Promethe
 
 Para mais informações, acesse o repositório oficial do Node Exporter: [Node Exporter no GitHub](https://github.com/prometheus/node_exporter).
 
-### Alert Manager
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
+  <img src="./images/logos/alert-manager-logo.png" alt="Alert Manager" width="50"/>
+  <h3 style="margin: 0;">Alert Manager</h3> 
+</div>
 
 O **Alert Manager** é um componente do Prometheus responsável por gerenciar os alertas quando as condições definidas nas métricas do Prometheus são atendidas. Ele recebe os dados e encaminha as notificações para os canais configurados, como Slack, Email, Discord, entre outros.
 
@@ -92,9 +109,16 @@ Neste projeto, estaremos notificando por **email** dois alertas:
 - **SLO Break**: Alerta quando 90% das requisições forem maiores que 500ms nos últimos 1 minuto.
 - **ERROR 500**: Alerta quando o volume de erros 500 for maior que 20% no total de requisições nos últimos 5 minutos.
 
+<p align="center">
+<img src="./images/gifs/alert-manager-interface.gif" alt="Prometheus interface" width="500" style= "padding-top: 10px;"/>
+</p>
+
 Para mais informações, acesse a página do Prometheus sobre o [**Alert Manager**](https://prometheus.io/docs/alerting/latest/overview/).
 
-### Loki
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
+  <img src="./images/logos/loki-logo.png" alt="Loki" width="50"/>
+  <h3 style="margin: 0;">Loki</h3> 
+</div>
 
 O Loki é uma ferramenta de log aggregation responsável por coletar, armazenar e permitir a consulta de logs. Ele centraliza os registros de diferentes sistemas e aplicações em um único componente, permitindo pesquisas otimizadas através das metadatas (labels) dos logs.
 
@@ -117,7 +141,10 @@ Esse padrão possibilita uma filtragem completa e eficiente dos logs registrados
 
 Para mais informações, acesse a página do [Grafana Loki](https://grafana.com/docs/loki/latest/).
 
-### Grafana
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
+  <img src="https://skillicons.dev/icons?i=grafana" alt="Grafana"/>
+  <h3 style="margin: 0;">Grafana</h3> 
+</div>
 
 O Grafana é uma plataforma de visualização e monitoramento de dados que permite criar dashboards interativos, acompanhar métricas, visualizar e analisar logs em tempo real, além de criar alarmes baseados em métricas disponíveis. Ele suporta diferentes fontes de dados, como Prometheus, Loki, CloudWatch, Elasticsearch, entre outras.
 
@@ -128,9 +155,16 @@ Neste projeto, utilizamos o Grafana para criar dois dashboards:
 
 Com esses dois dashboards, torna-se mais fácil correlacionar eventos e realizar análises de erros com mais eficiência.
 
+<p align="center">
+<img src="./images/gifs/grafana-interface.gif" alt="Prometheus interface" width="500" style= "padding-top: 10px;"/>
+</p>
+
 Para mais informações, acesse a página oficial do [Grafana](https://grafana.com/docs/grafana/latest/).
 
-### Jaeger
+<div style="display: flex; align-items: center; gap: 10px; padding-bottom: 18px; padding-top: 30px;">
+  <img src="./images/logos/jaeger-logo.png" alt="Jaeger" width="50"/>
+  <h3 style="margin: 0;">Jaeger</h3> 
+</div>
 
 O **Jaeger** é uma ferramenta de **tracing distribuído** utilizada para monitorar transações em arquiteturas distribuídas, desde aplicações monolíticas até microserviços. Ele permite acompanhar toda a **propagação transacional** dentro de um sistema por meio de **spans**, que juntos formam um **trace**.
 
@@ -144,4 +178,167 @@ Simplificando, um **trace** representa uma transação do início ao fim, regist
 
 Neste projeto, utilizamos o Jaeger para acompanhar a **malha transacional** desde o início da execução no **Nginx** até a finalização da transação. Conseguimos visualizar tanto a execução principal da função quanto o uso de componentes externos, como o **Loki**, permitindo uma análise mais detalhada do comportamento da aplicação.
 
+<p align="center">
+<img src="./images/gifs/jaeger-interface.gif" alt="Prometheus interface" width="500" style= "padding-top: 10px;"/>
+</p>
+
 Para mais informações, acesse a página oficial do [Jaeger](https://www.jaegertracing.io/).
+
+## 🚀 Tecnologias
+
+&nbsp;&nbsp;&nbsp;
+
+<table border="0" align="center">
+  <tr>
+    <td align="center" width="100">
+      <a href="https://nodejs.org/en" target="_blank">
+        <img src="https://skillicons.dev/icons?i=nodejs" width="50"/>
+        <br>Node.js
+      </a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://expressjs.com/pt-br/" target="_blank">
+        <img src="https://skillicons.dev/icons?i=express" width="50"/>
+        <br>Express
+      </a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://prometheus.io/docs/introduction/overview/" target="_blank">
+        <img src="https://skillicons.dev/icons?i=prometheus" width="50"/>
+        <br>Prometheus
+      </a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://github.com/prometheus/node_exporter" target="_blank">
+        <img src="./images/logos/node-exporter-logo.png" width="50"/>
+        <br>Node Exporter
+      </a>
+    </td>
+    <td align="center" width="100">
+      <a href="https://prometheus.io/docs/alerting/latest/overview/" target="_blank">
+        <img src="./images/logos/alert-manager-logo.png" width="50"/>
+        <br>Alert Manager
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://grafana.com/docs/loki/latest/" target="_blank">
+        <img src="./images/logos/loki-logo.png" width="50"/>
+        <br>Loki
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://www.jaegertracing.io/" target="_blank">
+        <img src="./images/logos/jaeger-logo.png" width="50"/>
+        <br>Jaeger
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://grafana.com/docs/grafana/latest/" target="_blank">
+        <img src="https://skillicons.dev/icons?i=grafana" width="50"/>
+        <br>Grafana
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://docs.docker.com/get-started/" target="_blank">
+        <img src="https://skillicons.dev/icons?i=docker" width="50"/>
+        <br>Docker
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://nginx.org/en/" target="_blank">
+        <img src="https://skillicons.dev/icons?i=nginx" width="50"/>
+        <br>Nginx
+      </a>
+    </td>
+  </tr>
+</table>
+
+&nbsp;&nbsp;&nbsp;
+
+## ⚠️ Pré-requisitos
+
+> [!Atenção]
+> Para executar o projeto é necessário instalar as seguintes ferramentas em sua máquina:
+
+- [Node.js](https://nodejs.org/en): v18 ou maior.
+
+Para o envio de alertas por e-mail, é necessário configurar credenciais. Se estiver utilizando uma conta do Gmail, será preciso gerar uma senha de aplicativo. Consulte a [documentação oficial do Google](https://support.google.com/accounts/answer/185833?hl=en) para mais detalhes sobre como criar essa senha.
+
+> [!IMPORTANTE] Renomeie o arquivo .env_example para .env e preencha as informações obrigatórias para o funcionamento do projeto.
+
+```
+ALERT_EMAIL_TO=destinatario@gmail.com
+ALERT_EMAIL_FROM=remetente@gmail.com
+ALERT_EMAIL_USERNAME=remetente@gmail.com
+ALERT_EMAIL_PASSWORD=aaaa bbbb cccc dddd
+SMTP_SERVER=smtp.gmail.com:587
+
+SECRET=hyper-mega-secret
+EXPIRE=43200
+```
+
+## 📦 Instalação
+
+Clone o repositório para o seu computador
+
+```
+git clone https://github.com/MichaelDouglasPIX/watchdog-api.git
+```
+
+Accesse o projeto e instale as dependências
+
+```
+cd watchdog-api
+npm i
+```
+
+## Rodar o projeto localmente
+
+### Docker
+
+Inicie os contêineres
+
+```
+npm run docker:up
+```
+
+Comando para finalizar a execução dos contêineres
+
+```
+npm run docker:down
+```
+
+Comando para reiniciar os contêineres
+
+```
+npm run docker:reset
+```
+
+### Interfaces Web
+
+Após iniciar os containers com Docker, é possível acessar as interfaces de monitoramento para acompanhar e analisar os dados:
+
+- [Prometheus](http://localhost:9090/): Interface para consulta de métricas coletadas.
+- [Alert Manager](http://localhost:9093/): Gerenciamento de alertas configurados no Prometheus.
+- [Jaeger](http://localhost:16686/): Rastreamento distribuído de transações da aplicação.
+- [Grafana](http://localhost:3000/): Visualização de métricas e logs em dashboards personalizados.
+
+&nbsp;&nbsp;&nbsp;
+
+> [!Atenção]
+> O container **request-generator** simula requisições de clientes, gerando tráfego para alimentar as métricas de monitoramento. Caso deseje visualizar apenas os seus próprios testes, você pode interromper esse container sem impactar o restante do projeto.
+
+&nbsp;&nbsp;&nbsp;
+
+### Rotas da Watchdog API
+
+Abaixo estão as principais rotas da API, juntamente com suas descrições:
+
+| Método | URL                      | Descrição                                                                     |
+| ------ | ------------------------ | ----------------------------------------------------------------------------- |
+| GET    | http://localhost/        | Retorna um objeto JSON sem necessidade de body. json                          |
+| POST   | http://localhost/        | Requer um JSON contendo pelo menos um atributo.                               |
+| POST   | http://localhost/session | Requer um JSON contendo `username` e `password`                               |
+| GET    | http://localhost/latency | Simula uma latência aleatória entre 0 e 20 segundos e retorna um objeto JSON. |
