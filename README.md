@@ -181,9 +181,9 @@ Com esses dois dashboards, torna-se mais fácil correlacionar eventos e realizar
 
 Para mais informações, acesse a página oficial do [Grafana](https://grafana.com/docs/grafana/latest/).
 
-<table>
+<table border="0">
   <tr>
-    <td>
+    <td style="padding-right: 10px; vertical-align: middle;">
       <img src="./images/logos/jaeger-logo.png" alt="Jaeger" width="50"/>
     </td>
     <td><h3 style="margin: 0;">Jaeger</h3></td>
