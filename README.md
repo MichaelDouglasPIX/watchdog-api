@@ -341,3 +341,9 @@ Abaixo estão as principais rotas da API, juntamente com suas descrições:
 | POST   | http://localhost/        | Requer um JSON contendo pelo menos um atributo.                               |
 | POST   | http://localhost/session | Requer um JSON contendo `username` e `password`                               |
 | GET    | http://localhost/latency | Simula uma latência aleatória entre 0 e 20 segundos e retorna um objeto JSON. |
+
+&nbsp;&nbsp;&nbsp;
+
+## License
+
+[MIT licensed](LICENSE).
